@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
 
 /*!
  * Bootstrap v4.5.3 (https://getbootstrap.com/)
@@ -42,8 +42,6 @@
 *::before,
 *::after {
   box-sizing: border-box;
-  margin: 0;
-  padding: 0;
 }
 
 html {
@@ -67,6 +65,7 @@ section {
 }
 
 body {
+  margin: 0;
   font-family: 'Inter', sans-serif;
   font-size: 1rem;
   font-weight: 400;

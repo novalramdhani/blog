@@ -11,7 +11,13 @@
             <p>{{ $post->content }}</p>
 
             <div class="d-flex justify-content-between">
-                <a href="" class="btn btn-link btn-sm text-success p-0">Edit Post</a>
+                <a href="{{ route('posts.edit', $post->slug) }}" class="btn btn-link btn-sm text-success p-0">Edit Post</a>
+
+                <form action="{{ route('posts.delete', $post->slug) }}" method="post">
+                    @csrf
+                    @method('delete')
+                    <button type="submit" class="btn btn-link btn-sm text-danger p-0">Delete Post</button>
+                </form>
             </div>
         </div>
     </div>

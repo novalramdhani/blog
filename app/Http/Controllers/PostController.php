@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -26,7 +27,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view('posts.create');
     }
 
     /**
@@ -35,9 +36,20 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store()
     {
-        //
+        $attr = request()->validate([
+            'title' => 'required|min:10',
+            'content' => 'required'
+        ]);
+
+        $attr['slug'] = Str::slug(request('title'));
+
+        Post::create($attr);
+
+        return redirect()
+               ->route('posts.index')
+               ->with('success', 'The new post was created successfully.');
     }
 
     /**
@@ -59,7 +71,7 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+        return view('posts.edit', compact('post'));
     }
 
     /**
@@ -69,9 +81,18 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $post)
+    public function update(Post $post)
     {
-        //
+        $attr = request()->validate([
+            'title' => 'required|min:10',
+            'content' => 'required'
+        ]);
+
+        $post->update($attr);
+
+        return redirect()
+               ->route('posts.index')
+               ->with('success', 'The post was updated successfully.');
     }
 
     /**
@@ -82,6 +103,10 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+        $post->delete();
+
+        return redirect()
+               ->route('posts.index')
+               ->with('success', 'The post was deleted successfully.');
     }
 }

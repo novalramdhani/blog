@@ -22,9 +22,9 @@
 </head>
 <body>
     <div id="app">
-
-        {{-- Navbar Component --}}
         <x-navbar />
+
+            <x-alert />
 
         <main class="py-4">
             @yield('content')

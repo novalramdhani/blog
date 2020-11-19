@@ -3,11 +3,16 @@
 @section('content')
 
 <div class="container">
-    <h2>All Posts</h2>
+    <div class="d-flex justify-content-between">
+        <h2>All Posts</h2>
+        <div>
+            <a href="{{ route('posts.create') }}" class="btn btn-primary">New Post</a>
+        </div>
+    </div>
     <div class="row">
         @forelse ($posts as $post)
             <div class="col-md-4 mt-3">
-                <div class="card mb-5">
+                <div class="card mb-3">
                     <div class="card-body">
                         <p class="card-title text-secondary">{{ $post->title }}</p>
                         <hr>
