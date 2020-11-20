@@ -14,6 +14,9 @@ Route::get('/contact', 'HomeController@contact')
         ->middleware(['auth'])
         ->name('contact');
 
+Route::get('/search', 'SearchController@post')
+        ->name('search');
+
 Route::prefix('posts')->name('posts.')->group(function () {
     Route::get('/create', 'PostController@create')
             ->name('create');

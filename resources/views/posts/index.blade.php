@@ -28,8 +28,10 @@
                 </div>
             </div>
         @empty
-            <div class="alert alert-danger">
-                There no posts.
+            <div class="col-md-6 mt-3">
+                <div class="alert alert-danger">
+                    There no posts.
+                </div>
             </div>
         @endforelse
     </div>
