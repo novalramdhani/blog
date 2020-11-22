@@ -23,12 +23,13 @@
 <body>
     <div id="app">
 
+        {{-- Anonymous Component --}}
+
         <x-navbar-component typeNavbar="navbar-dark" theme="bg-dark" />
 
             <x-alert-component alertType="success" />
 
         <x-search-component text="Search something..." buttonType="btn btn-info" fontAwesome="fas fa-search" />
-
 
         <main class="py-4">
             @yield('content')
