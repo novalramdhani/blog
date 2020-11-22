@@ -4,16 +4,25 @@ namespace App\View\Components;
 
 use Illuminate\View\Component;
 
-class Alert extends Component
+class SearchComponent extends Component
 {
+    public $fontAwesome;
+
+    public $buttonType;
+
+    public $text;
+
+
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($fontAwesome, $buttonType, $text)
     {
-        //
+        $this->fontAwesome = $fontAwesome;
+        $this->buttonType = $buttonType;
+        $this->text = $text;
     }
 
     /**
@@ -23,6 +32,6 @@ class Alert extends Component
      */
     public function render()
     {
-        return view('components.alert');
+        return view('components.search-component');
     }
 }

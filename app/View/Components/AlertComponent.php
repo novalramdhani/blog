@@ -4,16 +4,18 @@ namespace App\View\Components;
 
 use Illuminate\View\Component;
 
-class Navbar extends Component
+class AlertComponent extends Component
 {
+    public $alertType;
+
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($alertType)
     {
-        //
+        $this->alertType = $alertType;
     }
 
     /**
@@ -23,6 +25,6 @@ class Navbar extends Component
      */
     public function render()
     {
-        return view('components.navbar');
+        return view('components.alert-component');
     }
 }

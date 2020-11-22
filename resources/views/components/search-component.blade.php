@@ -4,9 +4,9 @@
             <div class="col-md-6">
                 <form action="{{ route('search') }}" method="get">
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Recipient's username" autocomplete="off" name="query">
+                        <input type="text" class="form-control" placeholder="{{ $text }}" autocomplete="off" name="query">
                         <div class="input-group-append">
-                            <button class="btn btn-info" type="submit" id="button-addon2">Search...</button>
+                            <button class="{{ $buttonType }}" type="submit"><i class="{{ $fontAwesome }}"></i></button>
                         </div>
                     </div>
                 </form>
