@@ -4,6 +4,9 @@
 
 <div class="container">
     <h3>{{ $post->title }}</h3>
+    <div>
+    <a href="{{ route('category.detail', $post->category->slug) }}">{{ $post->category->name }}</a>
+    </div>
     <h5 class="text-secondary">Post published on: {{ $post->created_at->format('d F Y') }}</h5>
     <hr>
     <div class="row">

@@ -4,7 +4,11 @@
 
 <div class="container">
     <div class="d-flex justify-content-between">
-        <h2>All Posts</h2>
+        @if(isset($category))
+            <h2>Category: {{ $category->name }}</h2>
+            @else
+            <h2>All Post</h2>
+        @endif
         <div>
             <a href="{{ route('posts.create') }}" class="btn btn-primary">New Post</a>
         </div>
