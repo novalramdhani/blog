@@ -8,9 +8,19 @@
         <div class="col-md-6">
             <div class="card mt-3">
                 <div class="card-body">
-                   <form action="{{ route('posts.update', $post->slug) }}" method="post">
+                   <form action="{{ route('posts.update', $post->slug) }}" method="post" enctype="multipart/form-data">
                         @csrf
                         @method('patch')
+                        <div class="form-group">
+                            <label for="thumbnail">Choose your thumbnail</label>
+                            <input type="file" name="thumbnail" id="thumbnail">
+                            @error('thumbnail')
+                                <div class="text-danger mt-3">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+
                         <div class="form-group">
                             <label for="title">Title:</label>
                             <input type="text" name="title" id="title" class="form-control @error('title') is-invalid @enderror" value="{{ old('title') ?? $post->title }}">

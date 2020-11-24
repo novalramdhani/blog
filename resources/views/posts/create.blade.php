@@ -8,8 +8,12 @@
         <div class="col-md-6">
             <div class="card mt-3">
                 <div class="card-body">
-                   <form action="{{ route('posts.store') }}" method="post">
+                   <form action="{{ route('posts.store') }}" method="post" enctype="multipart/form-data">
                         @csrf
+                        <div class="form-group">
+                            <label for="thumbnail">Choose your thumbnail</label>
+                            <input type="file" name="thumbnail" id="thumbnail">
+                        </div>
                         <div class="form-group">
                             <label for="title">Title:</label>
                             <input type="text" name="title" id="title" class="form-control @error('title') is-invalid @enderror">

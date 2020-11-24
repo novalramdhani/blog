@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\{Category, Tag, Post};
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class PostController extends Controller
@@ -43,8 +44,15 @@ class PostController extends Controller
     {
         $attr = $this->validated();
 
+        if(request()->file('thumbnail')) {
+            $thumbnail = request()->file('thumbnail')->store('images/posts');
+        } else {
+            $thumbnail = null;
+        }
+
         $attr['slug'] = Str::slug(request('title'));
         $attr['category_id'] = request('category');
+        $attr['thumbnail'] = $thumbnail;
 
         $post = Post::create($attr);
 
@@ -92,7 +100,21 @@ class PostController extends Controller
     {
         $attr = $this->validated();
 
+        if(request()->file('thumbnail')) {
+            $thumbnail = request()->file('thumbnail')->store('images/posts');
+            Storage::delete($post->thumbnail);
+        } else {
+            $thumbnail = $post->thumbnail;
+        }
+
+        if(request()->file('thumbnail')) {
+            $thumbnail = request()->file('thumbnail')->store('images/posts');
+        } else {
+            $thumbnail = null;
+        }
+
         $attr['category_id'] = request('category');
+        $attr['thumbnail'] = $thumbnail;
 
         $post->update($attr);
         $post->tags()->sync(request('tags'));
@@ -110,6 +132,7 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
+        Storage::delete($post->thumbnail);
         $post->tags()->detach();
         $post->delete();
 
@@ -124,7 +147,8 @@ class PostController extends Controller
             'title' => ['required', 'min:10', 'max:25'],
             'content' => ['required'],
             'category' => ['required'],
-            'tags' => ['array', 'required']
+            'tags' => ['array', 'required'],
+            'thumbnail' => ['required', 'image', 'mimes:jpg,png,jpeg', 'max:2048']
         ]);
     }
 }
