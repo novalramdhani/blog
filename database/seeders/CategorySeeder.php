@@ -15,7 +15,16 @@ class CategorySeeder extends Seeder
     public function run()
     {
         $categories = collect(
-            ['Laravel', 'PHP', 'Javascript', 'React JS', 'CSS', 'Tailwind CSS']
+            [
+                'Laravel',
+                'PHP',
+                'Javascript',
+                'React JS',
+                'CSS',
+                'Tailwind CSS',
+                'REST API',
+                'Bootstrap'
+            ]
         );
 
         $categories->each(function ($c) {

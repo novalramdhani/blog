@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Post;
+use App\Models\{Category, Tag, Post};
 use Illuminate\Support\Str;
 
 class PostController extends Controller
@@ -26,7 +26,11 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('posts.create');
+        return view('posts.create', [
+            'post' => new Post(),
+            'categories' => Category::get(),
+            'tags' => Tag::get()
+        ]);
     }
 
     /**
@@ -37,14 +41,14 @@ class PostController extends Controller
      */
     public function store()
     {
-        $attr = request()->validate([
-            'title' => 'required|min:10',
-            'content' => 'required'
-        ]);
+        $attr = $this->validated();
 
         $attr['slug'] = Str::slug(request('title'));
+        $attr['category_id'] = request('category');
 
-        Post::create($attr);
+        $post = Post::create($attr);
+
+        $post->tags()->attach(request('tags'));
 
         return redirect()
                ->route('posts.index')
@@ -70,7 +74,11 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        return view('posts.edit', compact('post'));
+        return view('posts.edit', [
+            'post' => $post,
+            'categories' => Category::get(),
+            'tags' => Tag::get()
+        ]);
     }
 
     /**
@@ -82,12 +90,12 @@ class PostController extends Controller
      */
     public function update(Post $post)
     {
-        $attr = request()->validate([
-            'title' => 'required|min:10',
-            'content' => 'required'
-        ]);
+        $attr = $this->validated();
+
+        $attr['category_id'] = request('category');
 
         $post->update($attr);
+        $post->tags()->sync(request('tags'));
 
         return redirect()
                ->route('posts.index')
@@ -102,10 +110,21 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
+        $post->tags()->detach();
         $post->delete();
 
         return redirect()
                ->route('posts.index')
                ->with('success', 'The post was deleted successfully.');
+    }
+
+    public function validated()
+    {
+        return request()->validate([
+            'title' => ['required', 'min:10', 'max:25'],
+            'content' => ['required'],
+            'category' => ['required'],
+            'tags' => ['array', 'required']
+        ]);
     }
 }

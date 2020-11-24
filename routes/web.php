@@ -20,6 +20,7 @@ Route::get('/search', 'SearchController@post')
 Route::get('/posts', 'PostController@index')
         ->name('posts.index');
 
+
 Route::prefix('posts')->name('posts.')->group(function () {
     Route::get('/create', 'PostController@create')
             ->name('create');
@@ -37,10 +38,14 @@ Route::prefix('posts')->name('posts.')->group(function () {
             ->name('delete');
 });
 
+
 Route::get('/posts/{post:slug}', 'PostController@show')
         ->name('posts.show');
 
 Route::get('/categories/{category:slug}', 'CategoryController@index')
         ->name('category.detail');
+
+Route::get('/tags/{tag:slug}', 'TagController@index')
+        ->name('tags.index');
 
 Auth::routes();

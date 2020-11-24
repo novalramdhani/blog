@@ -6,6 +6,8 @@
     <div class="d-flex justify-content-between">
         @if(isset($category))
             <h2>Category: {{ $category->name }}</h2>
+            @elseif(isset($tag))
+            <h2>Tag: {{ $tag->name }}</h2>
             @else
             <h2>All Post</h2>
         @endif

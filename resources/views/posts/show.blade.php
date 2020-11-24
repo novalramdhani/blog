@@ -4,10 +4,15 @@
 
 <div class="container">
     <h3>{{ $post->title }}</h3>
+    <small><p class="text-secondary">Post published on: {{ $post->created_at->format('d F Y') }}</p></small>
     <div>
-    <a href="{{ route('category.detail', $post->category->slug) }}">{{ $post->category->name }}</a>
+        <a href="{{ route('category.detail', $post->category->slug) }}">{{ $post->category->name }}</a>
+        <div>
+            @foreach ($post->tags as $tag)
+                <a href="{{ route('tags.index', $tag->slug) }}">{{ $tag->name }}</a>
+            @endforeach
+        </div>
     </div>
-    <h5 class="text-secondary">Post published on: {{ $post->created_at->format('d F Y') }}</h5>
     <hr>
     <div class="row">
         <div class="col">
