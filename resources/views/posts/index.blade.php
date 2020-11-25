@@ -19,7 +19,9 @@
         @forelse ($posts as $post)
             <div class="col-md-4 mt-3">
                 <div class="card mb-3">
-                    <img src="{{ asset($post->takeImage) }}" class="img-thumbnail">
+                    @if($post->thumbnail)
+                        <img src="{{ asset($post->takeImage) }}" class="img-thumbnail">
+                    @endif
                     <div class="card-body">
                         <p class="card-title text-secondary">{{ $post->title }}</p>
                         <hr>

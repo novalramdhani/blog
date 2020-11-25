@@ -54,7 +54,7 @@ class PostController extends Controller
         $attr['category_id'] = request('category');
         $attr['thumbnail'] = $thumbnail;
 
-        $post = Post::create($attr);
+        $post = auth()->user()->posts()->create($attr);
 
         $post->tags()->attach(request('tags'));
 
@@ -100,6 +100,8 @@ class PostController extends Controller
     {
         $attr = $this->validated();
 
+        $this->authorize('update', $post);
+
         if(request()->file('thumbnail')) {
             $thumbnail = request()->file('thumbnail')->store('images/posts');
             Storage::delete($post->thumbnail);
@@ -107,11 +109,9 @@ class PostController extends Controller
             $thumbnail = $post->thumbnail;
         }
 
-        if(request()->file('thumbnail')) {
-            $thumbnail = request()->file('thumbnail')->store('images/posts');
-        } else {
-            $thumbnail = null;
-        }
+        request()->file('thumbnail')
+                    ? $thumbnail = request()->file('thumbnail')->store('images/posts')
+                    : null;
 
         $attr['category_id'] = request('category');
         $attr['thumbnail'] = $thumbnail;
@@ -136,6 +136,8 @@ class PostController extends Controller
         $post->tags()->detach();
         $post->delete();
 
+        $this->authorize('delete', $post);
+
         return redirect()
                ->route('posts.index')
                ->with('success', 'The post was deleted successfully.');
@@ -144,7 +146,7 @@ class PostController extends Controller
     public function validated()
     {
         return request()->validate([
-            'title' => ['required', 'min:10', 'max:25'],
+            'title' => ['required', 'min:10', 'max:25', 'unique:posts'],
             'content' => ['required'],
             'category' => ['required'],
             'tags' => ['array', 'required'],

@@ -27,4 +27,9 @@ class Post extends Model
     {
         return '/storage/' . $this->thumbnail;
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

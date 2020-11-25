@@ -19,13 +19,17 @@
             <p>{{ $post->content }}</p>
 
             <div class="d-flex justify-content-between">
-                <a href="{{ route('posts.edit', $post->slug) }}" class="btn btn-link btn-sm text-success p-0">Edit Post</a>
+                @can('update', $post)
+                    <a href="{{ route('posts.edit', $post->slug) }}" class="btn btn-link btn-sm text-success p-0">Edit Post</a>
+                @endcan
 
-                <form action="{{ route('posts.delete', $post->slug) }}" method="post">
-                    @csrf
-                    @method('delete')
-                    <button type="submit" class="btn btn-link btn-sm text-danger p-0">Delete Post</button>
-                </form>
+                @can('delete', $post)
+                    <form action="{{ route('posts.delete', $post->slug) }}" method="post">
+                        @csrf
+                        @method('delete')
+                        <button type="submit" class="btn btn-link btn-sm text-danger p-0">Delete Post</button>
+                    </form>
+                @endcan
             </div>
         </div>
     </div>
