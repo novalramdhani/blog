@@ -45,7 +45,9 @@ class PostController extends Controller
         $attr = $this->validated();
 
         if(request()->file('thumbnail')) {
-            $thumbnail = request()->file('thumbnail')->store('images/posts');
+            $thumbnail = request()
+                            ->file('thumbnail')
+                            ->store('images/posts');
         } else {
             $thumbnail = null;
         }
@@ -54,9 +56,13 @@ class PostController extends Controller
         $attr['category_id'] = request('category');
         $attr['thumbnail'] = $thumbnail;
 
-        $post = auth()->user()->posts()->create($attr);
+        $post = auth()
+                ->user()
+                ->posts()
+                ->create($attr);
 
-        $post->tags()->attach(request('tags'));
+        $post->tags()
+             ->attach(request('tags'));
 
         return redirect()
                ->route('posts.index')
@@ -103,7 +109,9 @@ class PostController extends Controller
         $this->authorize('update', $post);
 
         if(request()->file('thumbnail')) {
-            $thumbnail = request()->file('thumbnail')->store('images/posts');
+            $thumbnail = request()
+                            ->file('thumbnail')
+                            ->store('images/posts');
             Storage::delete($post->thumbnail);
         } else {
             $thumbnail = $post->thumbnail;
@@ -117,7 +125,8 @@ class PostController extends Controller
         $attr['thumbnail'] = $thumbnail;
 
         $post->update($attr);
-        $post->tags()->sync(request('tags'));
+        $post->tags()
+             ->sync(request('tags'));
 
         return redirect()
                ->route('posts.index')
