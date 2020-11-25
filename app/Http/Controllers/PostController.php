@@ -147,7 +147,7 @@ class PostController extends Controller
     {
         return request()->validate([
             'title' => ['required', 'min:10', 'max:25', 'unique:posts'],
-            'content' => ['required'],
+            'content' => ['required', 'min:15'],
             'category' => ['required'],
             'tags' => ['array', 'required'],
             'thumbnail' => ['required', 'image', 'mimes:jpg,png,jpeg', 'max:2048']
