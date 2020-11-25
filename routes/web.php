@@ -20,7 +20,6 @@ Route::get('/search', 'SearchController@post')
 Route::get('/posts', 'PostController@index')
         ->name('posts.index');
 
-
 Route::middleware('auth')->prefix('posts')->name('posts.')->group(function () {
     Route::get('/create', 'PostController@create')
             ->name('create');
