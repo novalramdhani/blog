@@ -37,6 +37,24 @@ Route::middleware('auth')->prefix('posts')->name('posts.')->group(function () {
             ->name('delete');
 });
 
+Route::prefix('account')->middleware('auth')->name('account.')->group(function () {
+    Route::get('/profile', 'Account\AccountController@detail')
+            ->name('detail');
+
+    Route::get('/edit/profile', 'Account\AccountController@edit')
+            ->name('edit');
+
+    Route::patch('/edit/profile', 'Account\AccountController@updateProfile')
+            ->name('edit');
+
+    Route::get('/change-password', 'Account\ChangePasswordAccountController@edit')
+            ->name('change-password');
+
+    Route::patch('/change-password', 'Account\ChangePasswordAccountController@changePassword')
+            ->name('change-password');
+});
+
+
 Route::get('/posts/{post:slug}', 'PostController@show')
         ->name('posts.show');
 
