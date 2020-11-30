@@ -54,6 +54,9 @@ Route::prefix('account')->middleware('auth')->name('account.')->group(function (
             ->name('change-password');
 });
 
+Route::get('/noaccess', function(){
+    abort(404);
+});
 
 Route::get('/posts/{post:slug}', 'PostController@show')
         ->name('posts.show');
@@ -63,5 +66,4 @@ Route::get('/categories/{category:slug}', 'CategoryController@index')
 
 Route::get('/tags/{tag:slug}', 'TagController@index')
         ->name('tags.index');
-
-Auth::routes();
+Auth::routes(['verified' => true]);

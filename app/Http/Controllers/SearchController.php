@@ -17,4 +17,9 @@ class SearchController extends Controller
 
          return view('posts.index', compact('posts'));
     }
+
+    public function tags()
+    {
+        dd('hello world');
+    }
 }
