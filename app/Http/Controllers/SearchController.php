@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 
 class SearchController extends Controller
@@ -18,8 +19,14 @@ class SearchController extends Controller
          return view('posts.index', compact('posts'));
     }
 
-    public function tags()
+    public function tag()
     {
-        dd('hello world');
+        $queryTag = request('query');
+
+        $tags = Tag::where("name", "like", "%$queryTag%")
+                     ->latest()
+                     ->paginate(6);
+
+        return view('posts.index', compact('tags'));
     }
 }

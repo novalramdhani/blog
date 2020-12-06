@@ -13,6 +13,10 @@ class Post extends Model
         'thumbnail', 'title', 'slug', 'content', 'category_id'
     ];
 
+    protected $with = [
+        'category', 'tags', 'user'
+    ];
+
     public function category()
     {
         return $this->belongsTo(Category::class);

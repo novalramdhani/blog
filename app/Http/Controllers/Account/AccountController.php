@@ -46,4 +46,9 @@ class AccountController extends Controller
                 ->route('account.edit')
                 ->with('status', 'Your profile has been change successfully.');
     }
+
+    public function tags()
+    {
+        return 'hello world';
+    }
 }

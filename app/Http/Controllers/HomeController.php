@@ -18,4 +18,9 @@ class HomeController extends Controller
     {
         return view('about');
     }
+
+    public function some()
+    {
+        return User::get();
+    }
 }

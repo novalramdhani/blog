@@ -39,6 +39,7 @@ class MyProjectCommand extends Command
     {
         $this->call('migrate:refresh');
         $this->call('db:seed');
+        $this->call('migrate:status');
 
         $this->info('All database and seeders completed successfully.');
     }
