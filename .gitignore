@@ -12,3 +12,5 @@ npm-debug.log
 yarn-error.log
 yarn.lock
 stubs/
+package-lock.json
+composer.lock

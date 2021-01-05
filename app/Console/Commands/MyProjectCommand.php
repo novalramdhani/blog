@@ -39,6 +39,12 @@ class MyProjectCommand extends Command
     {
         $this->call('migrate:refresh');
         $this->call('db:seed');
+
+        if($this->confirm('Do you want use tinker shell for interact data?')) {
+            $this->call('tinker');
+            $this->info('Thank you for using tinker shell');
+        }
+
         $this->call('migrate:status');
 
         $this->info('All database and seeders completed successfully.');

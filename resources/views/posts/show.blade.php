@@ -33,6 +33,13 @@
             </div>
         </div>
     </div>
+
+    <hr>
+
+    <div class="mt-5">
+        @comments(['model' => $post])
+    </div>
+
 </div>
 
 @endsection

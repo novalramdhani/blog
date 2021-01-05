@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'editor' => env('IGNITION_EDITOR', 'vscode'),
+    'editor' => env('IGNITION_EDITOR', 'sublime'),
 
     /*
     |--------------------------------------------------------------------------
