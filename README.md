@@ -8,7 +8,7 @@ If you have used this repository there are some initial configuration and reinst
 # Composer Install
 Run composer install command to reinstall the package
 
-```
+```bash
 $ composer install
 ```
 
@@ -18,13 +18,13 @@ When it's finished don't forget to create this laravel project configuration fil
 # Application Key
 Don't forget to create a secret key in the form of encryption for this application so it's safe, run the artisan command in your terminal
 
-```
+```bash
 $ php artisan key:generate
 ```
 
 # Application Database
 The next step is to configure the database in the .env file, using the mysql driver to make it according to the name you want
-```
+```php
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
 DB_PORT=3306
@@ -35,13 +35,13 @@ DB_PASSWORD=
 
 and migrate database using artisan command
 
-```
+```bash
 $ php artisan migrate
 ```
 
 # Seeder Command Application
 I made my own command to migrate the database and I also used the seeder technique so that the data was not lost
-```
+```bash
 $ php artisan db:refresh
 ```
 it will refresh all your databases as well as seeders
@@ -49,7 +49,7 @@ it will refresh all your databases as well as seeders
 # Run Application
 Finally, to run this application, use the artisan serve command
 
-```
+```bash
 $ php artisan serve
 ```
 
