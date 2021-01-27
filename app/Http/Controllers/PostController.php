@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\{Category, Tag, Post};
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
@@ -40,7 +41,7 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store()
+    public function store(Request $request)
     {
         $attr = $this->validated();
 
@@ -52,7 +53,7 @@ class PostController extends Controller
             $thumbnail = null;
         }
 
-        $attr['slug'] = Str::slug(request('title'));
+        $attr['slug'] = Str::slug($request->title . '-' . Str::random(10));
         $attr['category_id'] = request('category');
         $attr['thumbnail'] = $thumbnail;
 
