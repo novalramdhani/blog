@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Account;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Http\Requests\AccountRequest;
 use Illuminate\Support\Facades\Storage;
 
 class AccountController extends Controller
@@ -18,7 +18,7 @@ class AccountController extends Controller
         return view('account.edit');
     }
 
-    public function updateProfile()
+    public function updateProfile(AccountRequest $request)
     {
         if(request()->file('thumbnail')) {
             $thumbnail = request()->file('thumbnail')->store('images/users');
@@ -31,12 +31,7 @@ class AccountController extends Controller
                   ? $thumbnail = request()->file('thumbnail')->store('images/users')
                   : null;
 
-        $result = request()->validate([
-            'thumbnail' => ['required', 'image', 'mimes:jpg,png,jpeg', 'max:2048'],
-            'name' => ['required', 'min:5'],
-            'username' => ['required', 'min:5', 'max:25', 'alpha_dash'],
-            'email' => ['required', 'email']
-        ]);
+        $result = $request->all();
 
         $result['thumbnail'] = $thumbnail;
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PostRequest;
 use App\Models\{Category, Tag, Post};
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -41,9 +42,9 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PostRequest $request)
     {
-        $attr = $this->validated();
+        $attr = $request->all();
 
         request()->file('thumbnail')
                     ? $thumbnail = request()->file('thumbnail')->store('images/posts')
@@ -99,9 +100,9 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Post $post)
+    public function update(PostRequest $request, Post $post)
     {
-        $attr = $this->validated();
+        $attr = $request->all();
 
         $this->authorize('update', $post);
 
@@ -147,16 +148,5 @@ class PostController extends Controller
         return redirect()
                ->route('posts.index')
                ->with('success', 'The post was deleted successfully.');
-    }
-
-    public function validated()
-    {
-        return request()->validate([
-            'title' => ['required', 'min:10', 'max:25', 'unique:posts'],
-            'content' => ['required', 'min:15'],
-            'category' => ['required'],
-            'tags' => ['array', 'required'],
-            'thumbnail' => ['required', 'image', 'mimes:jpg,png,jpeg', 'max:2048']
-        ]);
     }
 }
