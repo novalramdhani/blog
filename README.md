@@ -53,6 +53,7 @@ Only a little, the technology that I use for this blog application.
 
 - laravelista/comments
 - sebastianbergmann/phpunit
+- laravel/ui
 
 # Contribute this project application
 I'm very happy if you want to help in this blog application project that I made, starting with adding projects or finding bugs.
