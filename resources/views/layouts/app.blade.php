@@ -24,11 +24,11 @@
 </head>
 <body>
     <div id="app">
-        <x-navbar-component typeNavbar="navbar-dark" theme="bg-dark" />
+        <x-navbar-component type-navbar="navbar-dark" theme="bg-dark" />
 
-            <x-alert-component alertType="success" />
+            <x-alert-component alert-type="success" />
 
-        <x-search-component text="Search something..." buttonType="btn btn-info" fontAwesome="fas fa-search" />
+        <x-search-component text="Search something..." button-type="btn btn-info" font-awesome="fas fa-search" />
 
         <main class="py-4">
             @yield('content')
@@ -37,7 +37,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
     <script>
-        $(document).ready(function() {
+        $(document).ready(() => {
             $('.select2').select2({
                 placeholder: 'Choose some tags'
             });

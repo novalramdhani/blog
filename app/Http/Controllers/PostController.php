@@ -45,13 +45,9 @@ class PostController extends Controller
     {
         $attr = $this->validated();
 
-        if(request()->file('thumbnail')) {
-            $thumbnail = request()
-                            ->file('thumbnail')
-                            ->store('images/posts');
-        } else {
-            $thumbnail = null;
-        }
+        request()->file('thumbnail')
+                    ? $thumbnail = request()->file('thumbnail')->store('images/posts')
+                    : null;
 
         $attr['slug'] = Str::slug($request->title . '-' . Str::random(10));
         $attr['category_id'] = request('category');
