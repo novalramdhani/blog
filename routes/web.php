@@ -7,7 +7,6 @@ Route::get('/', 'HomeController@index')
         ->name('home');
 
 Route::get('/about', 'HomeController@about')
-        ->middleware(['auth'])
         ->name('about');
 
 Route::get('/contact', 'HomeController@contact')

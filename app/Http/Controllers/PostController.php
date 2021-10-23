@@ -49,7 +49,7 @@ class PostController extends Controller
                     ? $thumbnail = request()->file('thumbnail')->store('images/posts')
                     : null;
 
-        $attr['slug'] = Str::slug($request->title . '-' . Str::random(10));
+        $attr['slug'] = Str::slug($request->title . '-' . Str::random(20));
         $attr['category_id'] = request('category');
         $attr['thumbnail'] = $thumbnail;
 

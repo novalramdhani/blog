@@ -30,7 +30,7 @@ class Post extends Model
 
     public function getTakeImageAttribute()
     {
-        return '/storage/' . $this->thumbnail;
+        return "/storage/$this->thumbnail";
     }
 
     public function user()
