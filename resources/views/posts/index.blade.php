@@ -3,6 +3,9 @@
 @section('content')
 
 <div class="container">
+
+    <x-search-component text="Search something..." button-type="btn btn-info" font-awesome="fas fa-search" />
+
     <div class="d-flex justify-content-between">
         @if(isset($category))
             <h2>Category: {{ $category->name }}</h2>

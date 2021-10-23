@@ -28,8 +28,6 @@
 
             <x-alert-component alert-type="success" />
 
-        <x-search-component text="Search something..." button-type="btn btn-info" font-awesome="fas fa-search" />
-
         <main class="py-4">
             @yield('content')
         </main>
@@ -37,7 +35,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
     <script>
-        $(document).ready(() => {
+        $(document).ready(function() {
             $('.select2').select2({
                 placeholder: 'Choose some tags'
             });
