@@ -6,8 +6,6 @@ use Illuminate\View\Component;
 
 class SearchComponent extends Component
 {
-    public $fontAwesome;
-
     public $buttonType;
 
     public $text;
@@ -18,9 +16,8 @@ class SearchComponent extends Component
      *
      * @return void
      */
-    public function __construct($fontAwesome, $buttonType, $text)
+    public function __construct($buttonType, $text)
     {
-        $this->fontAwesome = $fontAwesome;
         $this->buttonType = $buttonType;
         $this->text = $text;
     }

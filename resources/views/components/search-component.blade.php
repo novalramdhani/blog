@@ -6,7 +6,7 @@
                     <div class="input-group mb-5">
                         <input type="text" class="form-control" placeholder="{{ $text }}" autocomplete="off" name="query">
                         <div class="input-group-append">
-                            <button class="{{ $buttonType }}" type="submit"><i class="{{ $fontAwesome }}"></i></button>
+                            <button class="{{ $buttonType }}" type="submit">Search</button>
                         </div>
                     </div>
                 </form>
