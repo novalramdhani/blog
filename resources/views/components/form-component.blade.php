@@ -1,17 +1,11 @@
 <div>
-    <div class="form-group">
-        <label for="thumbnail">Choose your thumbnail</label>
-        <input type="file" name="thumbnail" id="thumbnail">
-        @error('thumbnail')
-            <div class="text-danger mt-3">
-                <strong>{{ $message }}</strong>
-            </div>
-        @enderror
+    <div class="custom-file mb-3">
+        <input type="file" class="custom-file-input" id="thumbnail" name="thumbnail">
+        <label class="custom-file-label" for="thumbnail">Choose file</label>
     </div>
 
     <div class="form-group">
-        <label for="title">Title:</label>
-        <input type="text" name="title" id="title" class="form-control @error('title') is-invalid @enderror" value="{{ old('title') ?? $post->title }}">
+        <input type="text" name="title" id="title" class="form-control @error('title') is-invalid @enderror" value="{{ old('title') ?? $post->title }}" placeholder="Input title...">
         @error('title')
             <div class="invalid-feedback">
                 <strong>{{ $message }}</strong>
@@ -20,7 +14,6 @@
     </div>
 
     <div class="form-group">
-        <label for="category">Category:</label>
         <select name="category" id="category" class="form-control @error('category')
         is-invalid @enderror">
             @foreach ($categories as $category)
@@ -35,7 +28,6 @@
     </div>
 
     <div class="form-group">
-        <label for="tags">Tags:</label>
         <select multiple="multiple" class="form-control select2 @error('tags') is-invalid @enderror" name="tags[]" id="tags">
             @foreach ($post->tags as $tag)
                 <option selected value="{{ $tag->id }}">{{ $tag->name }}</option>
@@ -52,8 +44,7 @@
     </div>
 
     <div class="form-group">
-        <label for="content">Content:</label>
-        <textarea name="content" id="content" cols="30" rows="5" class="form-control @error('content') is-invalid @enderror">{{ old('content') ?? $post->content }}</textarea>
+        <textarea name="content" id="content" cols="30" rows="5" class="form-control @error('content') is-invalid @enderror" placeholder="Input Content">{{ old('content') ?? $post->content }}</textarea>
         @error('content')
             <div class="invalid-feedback">
                 <strong>{{ $message }}</strong>
