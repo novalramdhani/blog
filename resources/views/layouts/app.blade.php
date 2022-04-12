@@ -24,13 +24,15 @@
 </head>
 <body>
     <div id="app">
-        <x-navbar-component type-navbar="navbar-dark" theme="bg-dark" />
+        <x-navbar-component type-navbar="navbar-light" theme="bg-light" />
 
             <x-alert-component alert-type="success" />
 
         <main class="py-4">
             @yield('content')
         </main>
+
+        <x-footer />
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
