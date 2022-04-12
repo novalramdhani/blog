@@ -13,7 +13,6 @@
                 <!-- Left Side Of Navbar -->
                 <ul class="navbar-nav mr-auto">
                     <a href="{{ route('posts.index') }}" class="nav-link{{ request()->is('posts') ? ' active' : '' }}">Posts</a>
-                    <a href="{{ route('about') }}" class="nav-link">About</a>
                 </ul>
 
                 <!-- Right Side Of Navbar -->

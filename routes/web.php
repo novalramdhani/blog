@@ -6,9 +6,6 @@ Route::get('/', 'HomeController@index')
         ->middleware(['auth'])
         ->name('home');
 
-Route::get('/about', 'HomeController@about')
-        ->name('about');
-
 Route::get('/contact', 'HomeController@contact')
         ->middleware(['auth'])
         ->name('contact');
