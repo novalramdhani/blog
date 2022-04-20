@@ -11,7 +11,7 @@ class SearchController extends Controller
     public function post(Request $request)
     {
          $queryPost = request('query');
-
+        
          $posts = Post::where("title", "like", "%$queryPost%")
                         ->latest()
                         ->paginate(6);

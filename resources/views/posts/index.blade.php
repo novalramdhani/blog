@@ -4,7 +4,7 @@
 
 <div class="container">
 
-    <x-search-component text="Search a post, category or tag..." button-type="btn btn-info" font-awesome="fas fa-search" />
+    <x-search-component text="Search a post" button-type="btn btn-info" font-awesome="fas fa-search" />
 
     <div class="d-flex justify-content-between">
         @if(isset($category))
