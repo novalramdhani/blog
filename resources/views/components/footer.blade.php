@@ -36,16 +36,16 @@
                 Connect with me
             </h6>
             <p>
-              <a href="#!" class="text-reset">Instagram</a>
+              <a href="https://instagram.com/novallrmdhni" class="text-reset">Instagram</a>
             </p>
             <p>
-              <a href="#!" class="text-reset">Twitter</a>
+              <a href="https://twitter.com/novallramdhani" class="text-reset">Twitter</a>
             </p>
             <p>
-              <a href="#!" class="text-reset">Github</a>
+              <a href="https://github.com/novalramdhani" class="text-reset">Github</a>
             </p>
             <p>
-              <a href="#!" class="text-reset">Showwcase </a>
+              <a href="https://showwcase.com/novalramdhani" class="text-reset">Showwcase </a>
             </p>
           </div>
           <!-- Grid column -->
